@@ -13,8 +13,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
 
+        let dispatchQueue = ContactsDispatchQueue()
+        let contactAPI = ContactAPI(urlSession: URLSession.shared)
+        let employeeListViewController = EmployeeListViewController(
+            employeeAPI: contactAPI,
+            dispatchQueue: dispatchQueue
+        )
+        let navigationController = UINavigationController(rootViewController: employeeListViewController)
+
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ContactListViewController()
+        window.rootViewController = navigationController
         self.window = window
         self.window?.makeKeyAndVisible()
     }
