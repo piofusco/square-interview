@@ -19,3 +19,4 @@ build/
 fastlane/report.xml
 fastlane/test_output/
 /Contacts.xcodeproj/xcuserdata/jarvis.xcuserdatad/xcschemes/
+/Contacts.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
