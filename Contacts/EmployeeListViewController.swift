@@ -101,9 +101,7 @@ class EmployeeListViewController: UIViewController {
 
 extension EmployeeListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !employees.isEmpty else {
-            return 1
-        }
+        guard !employees.isEmpty else { return 1 }
 
         return employees.count
     }

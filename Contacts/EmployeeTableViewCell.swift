@@ -7,36 +7,31 @@
 
 import UIKit
 
+import Kingfisher
+
 class EmployeeTableViewCell: UITableViewCell {
-    private lazy var fullNameLabel: UILabel = {
+    private lazy var iconImage: UIImageView = {
+        let iconImage = UIImageView()
+        iconImage.translatesAutoresizingMaskIntoConstraints = false
+        iconImage.kf.indicatorType = .activity
+        return iconImage
+    }()
+
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
 
-    private lazy var emailAddressLabel: UILabel = {
+    private lazy var contactInfoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
     }()
 
-    private lazy var teamLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private lazy var employeeTypeLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        return label
-    }()
-
-    private lazy var phoneNumberLabel: UILabel = {
+    private lazy var employeeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -53,59 +48,56 @@ class EmployeeTableViewCell: UITableViewCell {
     override init(style: CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        contentView.addSubview(fullNameLabel)
-        contentView.addSubview(emailAddressLabel)
-        contentView.addSubview(teamLabel)
-        contentView.addSubview(employeeTypeLabel)
-        contentView.addSubview(phoneNumberLabel)
+        contentView.addSubview(iconImage)
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(contactInfoLabel)
+        contentView.addSubview(employeeLabel)
         contentView.addSubview(biographyLabel)
 
         NSLayoutConstraint.activate([
-            fullNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            fullNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            fullNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            iconImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
+            iconImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            iconImage.heightAnchor.constraint(equalToConstant: 60),
+            iconImage.widthAnchor.constraint(equalToConstant: 60),
 
-            emailAddressLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            emailAddressLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 5),
-            emailAddressLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            nameLabel.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 12),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
 
-            teamLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            teamLabel.topAnchor.constraint(equalTo: emailAddressLabel.bottomAnchor, constant: 5),
-            teamLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            contactInfoLabel.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 12),
+            contactInfoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
+            contactInfoLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
 
-            employeeTypeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            employeeTypeLabel.topAnchor.constraint(equalTo: teamLabel.bottomAnchor, constant: 5),
-            employeeTypeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            employeeLabel.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 12),
+            employeeLabel.topAnchor.constraint(equalTo: contactInfoLabel.bottomAnchor, constant: 5),
+            employeeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
 
-            phoneNumberLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            phoneNumberLabel.topAnchor.constraint(equalTo: employeeTypeLabel.bottomAnchor, constant: 5),
-            phoneNumberLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-
-            biographyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            biographyLabel.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 5),
-            biographyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
-            biographyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            biographyLabel.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 12),
+            biographyLabel.topAnchor.constraint(equalTo: employeeLabel.bottomAnchor, constant: 5),
+            biographyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
+            biographyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
         ])
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        fullNameLabel.text = ""
-        emailAddressLabel.text = ""
-        teamLabel.text = ""
-        employeeTypeLabel.text = ""
-        phoneNumberLabel.text = ""
+        nameLabel.text = ""
+        contactInfoLabel.text = ""
+        employeeLabel.text = ""
         biographyLabel.text = ""
     }
 
     func setupViews(employee: Employee) {
-        fullNameLabel.text = employee.fullName
-        emailAddressLabel.text = employee.emailAddress
-        teamLabel.text = employee.team
-        employeeTypeLabel.text = employee.employeeType.rawValue
-        phoneNumberLabel.text = employee.phoneNumber ?? ""
+        nameLabel.text = employee.fullName
+        contactInfoLabel.text = employee.emailAddress + " | " + (employee.phoneNumber ?? "")
+        employeeLabel.text = employee.team + " | " + employee.employeeType.rawValue
         biographyLabel.text = employee.biography ?? ""
+
+        if let largeURLString = employee.photoUrlLarge,
+           let url = URL(string: largeURLString) {
+            iconImage.kf.setImage(with: url)
+        }
     }
 
     required init?(coder: NSCoder) {
