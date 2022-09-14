@@ -12,10 +12,23 @@ class EmployeeListViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.dataSource = self
         tableView.estimatedRowHeight = 150
+        tableView.refreshControl = refreshControl
         tableView.register(EmployeeTableViewCell.self, forCellReuseIdentifier: "EmployeeTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
         return tableView
+    }()
+
+    private lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.medium)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
+
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(loadEmployees), for: .valueChanged)
+        return refreshControl
     }()
 
     private var employees: [Employee] = []
@@ -35,9 +48,19 @@ class EmployeeListViewController: UIViewController {
     override func loadView() {
         super.loadView()
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .refresh,
+            target: self,
+            action: #selector(loadEmployees)
+        )
         navigationItem.title = "Contacts"
 
         view = tableView
+        view.addSubview(spinner)
+        NSLayoutConstraint.activate([
+            spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
 
     override func viewDidLoad() {
@@ -46,7 +69,9 @@ class EmployeeListViewController: UIViewController {
         loadEmployees()
     }
 
-    private func loadEmployees() {
+    @objc private func loadEmployees() {
+        spinner.startAnimating()
+
         employeeAPI.fetchEmployees { [weak self] result in
             guard let self = self else { return }
 
@@ -55,11 +80,15 @@ class EmployeeListViewController: UIViewController {
                     self.dispatchQueue.async {
                         self.employees = employees
                         self.tableView.reloadData()
+                        self.refreshControl.endRefreshing()
+                        self.spinner.stopAnimating()
                     }
                 case .failure(let error):
                     self.dispatchQueue.async {
                         let alert = self.alertFactory.build(message: error.localizedDescription)
                         self.navigationController?.present(alert, animated: true)
+                        self.refreshControl.endRefreshing()
+                        self.spinner.stopAnimating()
                     }
             }
         }
