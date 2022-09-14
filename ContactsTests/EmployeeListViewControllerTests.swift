@@ -36,7 +36,7 @@ class EmployeeListViewControllerTest: XCTestCase {
     func test_defaultsToZeroEmployees() {
         subject.viewDidLoad()
 
-        XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 0)
+        XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 1)
     }
 
     func test_viewDidLoad_loadEmployees_success_reloadTableViewWithNewEmployees() {
@@ -83,6 +83,6 @@ class EmployeeListViewControllerTest: XCTestCase {
         XCTAssertEqual(mockEmployeeAPI.fetchEmployeesCount, 1)
         XCTAssertEqual(mockDispatchQueue.asyncCount, 1)
         XCTAssertEqual(mockAlertFactory.buildCount, 1)
-        XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 0)
+        XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 1)
     }
 }

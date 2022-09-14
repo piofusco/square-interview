@@ -9,7 +9,7 @@ protocol EmployeeAPI {
 }
 
 class ContactAPI: EmployeeAPI {
-    private static let BASE_URL = "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json"
+    private static let BASE_URL = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
 
     private let urlSession: SquareURLSession
 

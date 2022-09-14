@@ -72,12 +72,19 @@ class EmployeeListViewController: UIViewController {
 
 extension EmployeeListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        employees.count
+        guard !employees.isEmpty else {
+            return 1
+        }
+
+        return employees.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !employees.isEmpty && indexPath.row < employees.count else {
-            return UITableViewCell()
+        guard !employees.isEmpty else {
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "EmptyCell")
+            cell.textLabel?.text = "There are no employees!"
+            cell.detailTextLabel?.text = "Pull to refresh or tap the button in the right hand corner."
+            return cell
         }
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmployeeTableViewCell") as? EmployeeTableViewCell else {
