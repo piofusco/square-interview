@@ -2,11 +2,11 @@
 
 ## Build tools & versions used
 
-This project is built with Xcode 13.2.1 with Swift.
+This project is built with Xcode 13.2.1 and SPM. All code is written in Swift for iOS 15+ devices only.
 
 ## Steps to run the app
 
-To run the app, select the Contacts target, pick a simulator, and run.
+To run the app, select the Contacts target, pick a simulator, build, and run.
 To run the tests, select the ContactsTests, and run.
 
 ## What areas of the app did you focus on?
