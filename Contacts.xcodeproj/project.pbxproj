@@ -16,10 +16,14 @@
 		6382329728D0E17100AE4793 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6382329528D0E17100AE4793 /* LaunchScreen.storyboard */; };
 		BA6E308C273CC53F4D4AEA9B /* EmployeeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3D8E8597328280DC34D2 /* EmployeeAPI.swift */; };
 		BA6E328122B0FC7E466B19CB /* EmployeeAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3D06D68C59A0B1413324 /* EmployeeAPIError.swift */; };
+		BA6E3286F02C44090267036F /* EmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E320C66AF9FD92AE8E1E0 /* EmployeeViewModel.swift */; };
 		BA6E32B13C26C8B8A6FC5E8B /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3F24D7C23B26C397A7AF /* MockURLSession.swift */; };
 		BA6E344743B8095A2D9AA130 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA6E36DED8CCB1F54707832B /* Localizable.strings */; };
 		BA6E35A834779413FD850491 /* SquareURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E33605F7C52E5693C3128 /* SquareURLSession.swift */; };
+		BA6E36039A4B1101F4909D6E /* MockEmployeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E38B77EB578C4CD300BD6 /* MockEmployeeViewModel.swift */; };
 		BA6E3642172E526FC0A9778E /* MockAlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3323DBF4A0ABEA872738 /* MockAlertFactory.swift */; };
+		BA6E36672E10491010EAD633 /* MockEmployeeViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E38FA349CE2DE045617C6 /* MockEmployeeViewModelDelegate.swift */; };
+		BA6E37DB0C179B59CE0B32A0 /* EmployeeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3CC19EFA45D77D47151E /* EmployeeViewModelTests.swift */; };
 		BA6E38B6E922A8C5D8DF5521 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E388138E1E1F4A23D9304 /* Employee.swift */; };
 		BA6E3A08128C52B23F17661E /* SquareDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3992ED7725F5A124261C /* SquareDispatchQueue.swift */; };
 		BA6E3A436B1D06CE143F78D1 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3CA19F375BEB54AE0511 /* AlertFactory.swift */; };
@@ -50,6 +54,7 @@
 		6382329628D0E17100AE4793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6382329828D0E17100AE4793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA6E31529813AA6C76556E3A /* MockEmployeeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEmployeeAPI.swift; sourceTree = "<group>"; };
+		BA6E320C66AF9FD92AE8E1E0 /* EmployeeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewModel.swift; sourceTree = "<group>"; };
 		BA6E32C1D160AEEF6DEECF02 /* EmployeeListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListViewControllerTests.swift; sourceTree = "<group>"; };
 		BA6E3323DBF4A0ABEA872738 /* MockAlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAlertFactory.swift; sourceTree = "<group>"; };
 		BA6E33605F7C52E5693C3128 /* SquareURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareURLSession.swift; sourceTree = "<group>"; };
@@ -57,8 +62,11 @@
 		BA6E36DED8CCB1F54707832B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		BA6E375D1DBFD4574DB54508 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		BA6E388138E1E1F4A23D9304 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		BA6E38B77EB578C4CD300BD6 /* MockEmployeeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEmployeeViewModel.swift; sourceTree = "<group>"; };
+		BA6E38FA349CE2DE045617C6 /* MockEmployeeViewModelDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEmployeeViewModelDelegate.swift; sourceTree = "<group>"; };
 		BA6E3992ED7725F5A124261C /* SquareDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareDispatchQueue.swift; sourceTree = "<group>"; };
 		BA6E3CA19F375BEB54AE0511 /* AlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
+		BA6E3CC19EFA45D77D47151E /* EmployeeViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeViewModelTests.swift; sourceTree = "<group>"; };
 		BA6E3D06D68C59A0B1413324 /* EmployeeAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeAPIError.swift; sourceTree = "<group>"; };
 		BA6E3D8E8597328280DC34D2 /* EmployeeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeAPI.swift; sourceTree = "<group>"; };
 		BA6E3F24D7C23B26C397A7AF /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
@@ -92,6 +100,9 @@
 				BA6E31529813AA6C76556E3A /* MockEmployeeAPI.swift */,
 				BA6E33860C4B8AAF05438F09 /* MockDIspatchQueue.swift */,
 				BA6E3323DBF4A0ABEA872738 /* MockAlertFactory.swift */,
+				BA6E3CC19EFA45D77D47151E /* EmployeeViewModelTests.swift */,
+				BA6E38FA349CE2DE045617C6 /* MockEmployeeViewModelDelegate.swift */,
+				BA6E38B77EB578C4CD300BD6 /* MockEmployeeViewModel.swift */,
 			);
 			path = ContactsTests;
 			sourceTree = "<group>";
@@ -131,6 +142,7 @@
 				BA6E3992ED7725F5A124261C /* SquareDispatchQueue.swift */,
 				BA6E375D1DBFD4574DB54508 /* EmployeeTableViewCell.swift */,
 				BA6E3CA19F375BEB54AE0511 /* AlertFactory.swift */,
+				BA6E320C66AF9FD92AE8E1E0 /* EmployeeViewModel.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -205,7 +217,7 @@
 			);
 			mainGroup = 6382327E28D0E17000AE4793;
 			packageReferences = (
-				6378C1F428D22AB30077095F /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				6378C1F428D22AB30077095F /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
 			);
 			productRefGroup = 6382328828D0E17000AE4793 /* Products */;
 			projectDirPath = "";
@@ -248,6 +260,9 @@
 				BA6E3AFE37590E4EFF649B4A /* MockEmployeeAPI.swift in Sources */,
 				BA6E3C5CAE980C5958282B78 /* MockDIspatchQueue.swift in Sources */,
 				BA6E3642172E526FC0A9778E /* MockAlertFactory.swift in Sources */,
+				BA6E37DB0C179B59CE0B32A0 /* EmployeeViewModelTests.swift in Sources */,
+				BA6E36672E10491010EAD633 /* MockEmployeeViewModelDelegate.swift in Sources */,
+				BA6E36039A4B1101F4909D6E /* MockEmployeeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +280,7 @@
 				BA6E3A08128C52B23F17661E /* SquareDispatchQueue.swift in Sources */,
 				BA6E3AAA8B7C08FAE1ACB8E3 /* EmployeeTableViewCell.swift in Sources */,
 				BA6E3A436B1D06CE143F78D1 /* AlertFactory.swift in Sources */,
+				BA6E3286F02C44090267036F /* EmployeeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +547,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		6378C1F428D22AB30077095F /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		6378C1F428D22AB30077095F /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -544,7 +560,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		6378C1F528D22AB30077095F /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6378C1F428D22AB30077095F /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 6378C1F428D22AB30077095F /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

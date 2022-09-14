@@ -13,15 +13,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
 
-        let dispatchQueue = ContactsDispatchQueue()
         let contactAPI = ContactAPI(urlSession: URLSession.shared)
-        let alertFactory = AlertFactory()
+        let employeeViewModel = ContactViewModel(employeeAPI: contactAPI)
 
+        let dispatchQueue = ContactsDispatchQueue()
+        let alertFactory = AlertFactory()
         let employeeListViewController = EmployeeListViewController(
-            employeeAPI: contactAPI,
+            employeeViewModel: employeeViewModel,
             dispatchQueue: dispatchQueue,
             alertFactory: alertFactory
         )
+        employeeViewModel.delegate = employeeListViewController
         let navigationController = UINavigationController(rootViewController: employeeListViewController)
 
         let window = UIWindow(windowScene: windowScene)

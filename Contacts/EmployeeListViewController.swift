@@ -31,14 +31,12 @@ class EmployeeListViewController: UIViewController {
         return refreshControl
     }()
 
-    private var employees: [Employee] = []
-
-    private let employeeAPI: EmployeeAPI
+    private let employeeViewModel: EmployeeViewModel
     private let dispatchQueue: SquareDispatchQueue
     private let alertFactory: AlertFactory
 
-    init(employeeAPI: EmployeeAPI, dispatchQueue: SquareDispatchQueue, alertFactory: AlertFactory) {
-        self.employeeAPI = employeeAPI
+    init(employeeViewModel: EmployeeViewModel, dispatchQueue: SquareDispatchQueue, alertFactory: AlertFactory) {
+        self.employeeViewModel = employeeViewModel
         self.dispatchQueue = dispatchQueue
         self.alertFactory = alertFactory
 
@@ -72,26 +70,7 @@ class EmployeeListViewController: UIViewController {
     @objc private func loadEmployees() {
         spinner.startAnimating()
 
-        employeeAPI.fetchEmployees { [weak self] result in
-            guard let self = self else { return }
-
-            switch result {
-                case .success(let employees):
-                    self.dispatchQueue.async {
-                        self.employees = employees
-                        self.tableView.reloadData()
-                        self.refreshControl.endRefreshing()
-                        self.spinner.stopAnimating()
-                    }
-                case .failure(let error):
-                    self.dispatchQueue.async {
-                        let alert = self.alertFactory.build(message: error.localizedDescription)
-                        self.navigationController?.present(alert, animated: true)
-                        self.refreshControl.endRefreshing()
-                        self.spinner.stopAnimating()
-                    }
-            }
-        }
+        employeeViewModel.fetchEmployees()
     }
 
     required init?(coder: NSCoder) {
@@ -101,13 +80,13 @@ class EmployeeListViewController: UIViewController {
 
 extension EmployeeListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !employees.isEmpty else { return 1 }
+        guard !employeeViewModel.employees.isEmpty else { return 1 }
 
-        return employees.count
+        return employeeViewModel.employees.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard !employees.isEmpty else {
+        guard !employeeViewModel.employees.isEmpty else {
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "EmptyCell")
             cell.textLabel?.text = "There are no employees!"
             cell.detailTextLabel?.text = "Pull to refresh or tap the button in the right hand corner."
@@ -118,8 +97,31 @@ extension EmployeeListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        cell.setupViews(employee: employees[indexPath.row])
+        cell.setupViews(employee: employeeViewModel.employees[indexPath.row])
 
         return cell
+    }
+}
+
+extension EmployeeListViewController: EmployeeViewModelDelegate {
+    func employeesDidUpdate() {
+        dispatchQueue.async { [weak self] in
+            guard let self = self else { return }
+
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            self.spinner.stopAnimating()
+        }
+    }
+
+    func employeesDidFail(error: Error) {
+        dispatchQueue.async { [weak self] in
+            guard let self = self else { return }
+
+            let alert = self.alertFactory.build(message: error.localizedDescription)
+            self.navigationController?.present(alert, animated: true)
+            self.refreshControl.endRefreshing()
+            self.spinner.stopAnimating()
+        }
     }
 }

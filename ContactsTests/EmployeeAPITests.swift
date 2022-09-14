@@ -10,14 +10,14 @@ import XCTest
 @testable import Contacts
 
 class EmployeeAPITest: XCTestCase {
-    func test_fetchPage_callResume_ensureURL() {
+    func test_fetchEmployees_callResume_ensureURL() {
         let mockURLSession = MockURLSession()
         let mockURLSessionDataTask = MockURLSessionDataTask()
         mockURLSession.nextDataTask = mockURLSessionDataTask
         let subject = ContactAPI(urlSession: mockURLSession)
-        
+
         subject.fetchEmployees { _ in }
-        
+
         XCTAssertTrue(mockURLSessionDataTask.didResume)
         guard let lastURL = mockURLSession.lastURL else {
             XCTFail("No URL was called")
@@ -30,8 +30,8 @@ class EmployeeAPITest: XCTestCase {
         XCTAssertEqual(urlComponents.host, "s3.amazonaws.com")
         XCTAssertEqual(urlComponents.path, "/sq-mobile-interview/employees.json")
     }
-    
-    func test_fetchPage_200_callCompletionWithData() {
+
+    func test_fetchEmployees_200_callCompletionWithData() {
         let mockURLSession = MockURLSession()
         mockURLSession.nextResponses = [HTTPURLResponse.Happy200Request]
         mockURLSession.nextData = happyEmployeeResponseJSON
@@ -39,16 +39,16 @@ class EmployeeAPITest: XCTestCase {
         let subject = ContactAPI(urlSession: mockURLSession)
         var completionDidRun = false
         var response: [Employee]?
-        
+
         subject.fetchEmployees { result in
             completionDidRun = true
-            
+
             switch result {
                 case .success(let pageResponse): response = pageResponse
                 case .failure(_): XCTFail("result shouldn't be a failure")
             }
         }
-        
+
         XCTAssertTrue(completionDidRun)
         guard let response = response else {
             XCTFail("couldn't unwrap photos")
@@ -67,14 +67,14 @@ class EmployeeAPITest: XCTestCase {
         XCTAssertEqual(response[0].photoUrlLarge, "https://some.url/path2.jpg")
 
     }
-    
-    func test_fetchPage_400_callCompletionWithFailure() {
+
+    func test_fetchEmployees_400_callCompletionWithFailure() {
         let mockURLSession = MockURLSession()
         mockURLSession.nextResponses = [HTTPURLResponse.BadRequestError]
         mockURLSession.nextDataTask = MockURLSessionDataTask()
         let subject = ContactAPI(urlSession: mockURLSession)
         var completionDidRun = false
-        
+
         subject.fetchEmployees { result in
             switch result {
                 case .success(_): XCTFail("result shouldn't be a failure")
@@ -83,17 +83,17 @@ class EmployeeAPITest: XCTestCase {
                     XCTAssertTrue(error is EmployeeAPIError)
             }
         }
-        
+
         XCTAssertTrue(completionDidRun)
     }
-    
-    func test_fetchPage_500_callCompletionWithFailure() {
+
+    func test_fetchEmployees_500_callCompletionWithFailure() {
         let mockURLSession = MockURLSession()
         mockURLSession.nextResponses = [HTTPURLResponse.InternalServerError]
         mockURLSession.nextDataTask = MockURLSessionDataTask()
         let subject = ContactAPI(urlSession: mockURLSession)
         var completionDidRun = false
-        
+
         subject.fetchEmployees { result in
             switch result {
                 case .success(_): XCTFail("result shouldn't be a failure")
@@ -102,24 +102,24 @@ class EmployeeAPITest: XCTestCase {
                     XCTAssertTrue(error is EmployeeAPIError)
             }
         }
-        
+
         XCTAssertTrue(completionDidRun)
     }
-    
-    func test_fetchPage_error_callCompletionWithError() {
+
+    func test_fetchEmployees_error_callCompletionWithError() {
         let mockURLSession = MockURLSession()
         mockURLSession.nextError = NSError(domain: "doesn't matter", code: 666)
         mockURLSession.nextDataTask = MockURLSessionDataTask()
         let subject = ContactAPI(urlSession: mockURLSession)
         var completionDidRun = false
-        
+
         subject.fetchEmployees { result in
             switch result {
                 case .success(_): XCTFail("result shouldn't be a failure")
                 case .failure(_): completionDidRun = true
             }
         }
-        
+
         XCTAssertTrue(completionDidRun)
     }
 }
