@@ -91,7 +91,7 @@ class EmployeeTableViewCell: UITableViewCell {
     func setupViews(employee: Employee) {
         nameLabel.text = employee.fullName
         contactInfoLabel.text = employee.emailAddress + " | " + (employee.phoneNumber ?? "")
-        employeeLabel.text = employee.team + " | " + employee.employeeType.rawValue
+        employeeLabel.text = employee.team + " | " + employee.employeeType.description
         biographyLabel.text = employee.biography ?? ""
 
         if let largeURLString = employee.photoUrlLarge,

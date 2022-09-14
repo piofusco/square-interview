@@ -8,10 +8,18 @@ struct EmployeesResponse: Decodable {
     let employees: [Employee]
 }
 
-enum EmployeeType: String, Codable {
+enum EmployeeType: String, Decodable, CustomStringConvertible {
     case fullTime = "FULL_TIME"
     case partTime = "PART_TIME"
     case contractor = "CONTRACTOR"
+
+    var description: String {
+        switch self {
+            case .fullTime: return "Full-time"
+            case .partTime: return "Part-time"
+            case .contractor: return "Contractor"
+        }
+    }
 }
 
 struct Employee: Decodable {
