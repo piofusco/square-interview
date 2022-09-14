@@ -9,7 +9,7 @@ protocol EmployeeAPI {
 }
 
 class ContactAPI: EmployeeAPI {
-    private static let BASE_URL = "https://s3.amazonaws.com/sq-mobile-interview/employees.json"
+    private static let BASE_URL = "https://s3.amazonaws.com/sq-mobile-interview/employees_malformed.json"
 
     private let urlSession: SquareURLSession
 
@@ -35,7 +35,8 @@ class ContactAPI: EmployeeAPI {
                     do {
                         response = try JSONDecoder().decode(EmployeesResponse.self, from: data)
                     } catch {
-                        print(error)
+                        completion(Result.failure(error))
+                        return
                     }
 
                     if let responseToReturn = response { completion(Result.success(responseToReturn.employees)) }

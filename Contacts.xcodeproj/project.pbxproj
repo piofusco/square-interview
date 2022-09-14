@@ -18,10 +18,14 @@
 		BA6E32B13C26C8B8A6FC5E8B /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3F24D7C23B26C397A7AF /* MockURLSession.swift */; };
 		BA6E344743B8095A2D9AA130 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA6E36DED8CCB1F54707832B /* Localizable.strings */; };
 		BA6E35A834779413FD850491 /* SquareURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E33605F7C52E5693C3128 /* SquareURLSession.swift */; };
+		BA6E3642172E526FC0A9778E /* MockAlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3323DBF4A0ABEA872738 /* MockAlertFactory.swift */; };
 		BA6E38B6E922A8C5D8DF5521 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E388138E1E1F4A23D9304 /* Employee.swift */; };
 		BA6E3A08128C52B23F17661E /* SquareDispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3992ED7725F5A124261C /* SquareDispatchQueue.swift */; };
+		BA6E3A436B1D06CE143F78D1 /* AlertFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E3CA19F375BEB54AE0511 /* AlertFactory.swift */; };
 		BA6E3AAA8B7C08FAE1ACB8E3 /* EmployeeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E375D1DBFD4574DB54508 /* EmployeeTableViewCell.swift */; };
+		BA6E3AFE37590E4EFF649B4A /* MockEmployeeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E31529813AA6C76556E3A /* MockEmployeeAPI.swift */; };
 		BA6E3B8DB8581B0BC7B6B00B /* EmployeeListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E32C1D160AEEF6DEECF02 /* EmployeeListViewControllerTests.swift */; };
+		BA6E3C5CAE980C5958282B78 /* MockDIspatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6E33860C4B8AAF05438F09 /* MockDIspatchQueue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,12 +48,16 @@
 		6382329328D0E17100AE4793 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6382329628D0E17100AE4793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6382329828D0E17100AE4793 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA6E31529813AA6C76556E3A /* MockEmployeeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockEmployeeAPI.swift; sourceTree = "<group>"; };
 		BA6E32C1D160AEEF6DEECF02 /* EmployeeListViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeListViewControllerTests.swift; sourceTree = "<group>"; };
+		BA6E3323DBF4A0ABEA872738 /* MockAlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAlertFactory.swift; sourceTree = "<group>"; };
 		BA6E33605F7C52E5693C3128 /* SquareURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareURLSession.swift; sourceTree = "<group>"; };
+		BA6E33860C4B8AAF05438F09 /* MockDIspatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockDIspatchQueue.swift; sourceTree = "<group>"; };
 		BA6E36DED8CCB1F54707832B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		BA6E375D1DBFD4574DB54508 /* EmployeeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeTableViewCell.swift; sourceTree = "<group>"; };
 		BA6E388138E1E1F4A23D9304 /* Employee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		BA6E3992ED7725F5A124261C /* SquareDispatchQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareDispatchQueue.swift; sourceTree = "<group>"; };
+		BA6E3CA19F375BEB54AE0511 /* AlertFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertFactory.swift; sourceTree = "<group>"; };
 		BA6E3D06D68C59A0B1413324 /* EmployeeAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeAPIError.swift; sourceTree = "<group>"; };
 		BA6E3D8E8597328280DC34D2 /* EmployeeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeeAPI.swift; sourceTree = "<group>"; };
 		BA6E3F24D7C23B26C397A7AF /* MockURLSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
@@ -79,6 +87,9 @@
 				6356A92A28D0E2A600564F55 /* EmployeeAPITests.swift */,
 				BA6E3F24D7C23B26C397A7AF /* MockURLSession.swift */,
 				BA6E32C1D160AEEF6DEECF02 /* EmployeeListViewControllerTests.swift */,
+				BA6E31529813AA6C76556E3A /* MockEmployeeAPI.swift */,
+				BA6E33860C4B8AAF05438F09 /* MockDIspatchQueue.swift */,
+				BA6E3323DBF4A0ABEA872738 /* MockAlertFactory.swift */,
 			);
 			path = ContactsTests;
 			sourceTree = "<group>";
@@ -117,6 +128,7 @@
 				BA6E36DED8CCB1F54707832B /* Localizable.strings */,
 				BA6E3992ED7725F5A124261C /* SquareDispatchQueue.swift */,
 				BA6E375D1DBFD4574DB54508 /* EmployeeTableViewCell.swift */,
+				BA6E3CA19F375BEB54AE0511 /* AlertFactory.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -225,6 +237,9 @@
 				6356A92B28D0E2A600564F55 /* EmployeeAPITests.swift in Sources */,
 				BA6E32B13C26C8B8A6FC5E8B /* MockURLSession.swift in Sources */,
 				BA6E3B8DB8581B0BC7B6B00B /* EmployeeListViewControllerTests.swift in Sources */,
+				BA6E3AFE37590E4EFF649B4A /* MockEmployeeAPI.swift in Sources */,
+				BA6E3C5CAE980C5958282B78 /* MockDIspatchQueue.swift in Sources */,
+				BA6E3642172E526FC0A9778E /* MockAlertFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +256,7 @@
 				BA6E328122B0FC7E466B19CB /* EmployeeAPIError.swift in Sources */,
 				BA6E3A08128C52B23F17661E /* SquareDispatchQueue.swift in Sources */,
 				BA6E3AAA8B7C08FAE1ACB8E3 /* EmployeeTableViewCell.swift in Sources */,
+				BA6E3A436B1D06CE143F78D1 /* AlertFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

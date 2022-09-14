@@ -22,10 +22,12 @@ class EmployeeListViewController: UIViewController {
 
     private let employeeAPI: EmployeeAPI
     private let dispatchQueue: SquareDispatchQueue
+    private let alertFactory: AlertFactory
 
-    init(employeeAPI: EmployeeAPI, dispatchQueue: SquareDispatchQueue) {
+    init(employeeAPI: EmployeeAPI, dispatchQueue: SquareDispatchQueue, alertFactory: AlertFactory) {
         self.employeeAPI = employeeAPI
         self.dispatchQueue = dispatchQueue
+        self.alertFactory = alertFactory
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,7 +56,11 @@ class EmployeeListViewController: UIViewController {
                         self.employees = employees
                         self.tableView.reloadData()
                     }
-                case .failure(let error): print(error)
+                case .failure(let error):
+                    self.dispatchQueue.async {
+                        let alert = self.alertFactory.build(message: error.localizedDescription)
+                        self.navigationController?.present(alert, animated: true)
+                    }
             }
         }
     }

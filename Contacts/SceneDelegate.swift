@@ -15,9 +15,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let dispatchQueue = ContactsDispatchQueue()
         let contactAPI = ContactAPI(urlSession: URLSession.shared)
+        let alertFactory = AlertFactory()
+
         let employeeListViewController = EmployeeListViewController(
             employeeAPI: contactAPI,
-            dispatchQueue: dispatchQueue
+            dispatchQueue: dispatchQueue,
+            alertFactory: alertFactory
         )
         let navigationController = UINavigationController(rootViewController: employeeListViewController)
 

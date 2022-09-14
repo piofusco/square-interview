@@ -15,6 +15,7 @@ class EmployeeListViewControllerTest: XCTestCase {
 
     private var mockEmployeeAPI: MockEmployeeAPI!
     private var mockDispatchQueue: MockDispatchQueue!
+    private var mockAlertFactory: MockAlertFactory!
 
     private let stubTableView = UITableView()
 
@@ -23,10 +24,12 @@ class EmployeeListViewControllerTest: XCTestCase {
 
         mockEmployeeAPI = MockEmployeeAPI()
         mockDispatchQueue = MockDispatchQueue()
+        mockAlertFactory = MockAlertFactory()
 
         subject = EmployeeListViewController(
             employeeAPI: mockEmployeeAPI,
-            dispatchQueue: mockDispatchQueue
+            dispatchQueue: mockDispatchQueue,
+            alertFactory: mockAlertFactory
         )
     }
 
@@ -36,9 +39,9 @@ class EmployeeListViewControllerTest: XCTestCase {
         XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 0)
     }
 
-    func test_viewDidLoad_loadEmployees_reloadTableViewWithNewEmployees() {
-        mockEmployeeAPI.nextFetchEmployeesResponse = [
-            [
+    func test_viewDidLoad_loadEmployees_success_reloadTableViewWithNewEmployees() {
+        mockEmployeeAPI.nextFetchEmployeesResponses = [
+            .success([
                 Employee(
                     uuid: "1",
                     fullName: "",
@@ -61,38 +64,25 @@ class EmployeeListViewControllerTest: XCTestCase {
                     photoUrlSmall: nil,
                     photoUrlLarge: nil
                 )
-            ]
+            ])
         ]
 
         subject.viewDidLoad()
 
         XCTAssertEqual(mockEmployeeAPI.fetchEmployeesCount, 1)
         XCTAssertEqual(mockDispatchQueue.asyncCount, 1)
+        XCTAssertEqual(mockAlertFactory.buildCount, 0)
         XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 2)
     }
-}
 
-class MockEmployeeAPI: EmployeeAPI {
-    var nextFetchEmployeesResponse: [[Employee]] = []
-    var fetchEmployeesCount = 0
+    func test_viewDidLoad_loadEmployees_failure_createAlert() {
+        mockEmployeeAPI.nextFetchEmployeesResponses = [.failure(NSError(domain: "does not matter", code: -1))]
 
-    func fetchEmployees(completion: @escaping (Result<[Employee], Error>) -> ()) {
-        fetchEmployeesCount += 1
+        subject.viewDidLoad()
 
-        if nextFetchEmployeesResponse.count > 0 {
-            completion(Result.success(nextFetchEmployeesResponse.removeFirst()))
-        }
+        XCTAssertEqual(mockEmployeeAPI.fetchEmployeesCount, 1)
+        XCTAssertEqual(mockDispatchQueue.asyncCount, 1)
+        XCTAssertEqual(mockAlertFactory.buildCount, 1)
+        XCTAssertEqual(subject.tableView(stubTableView, numberOfRowsInSection: 0), 0)
     }
 }
-
-class MockDispatchQueue: SquareDispatchQueue {
-    var asyncCount = 0
-
-    func async(execute: @escaping @convention(block) () -> ()) {
-        asyncCount += 1
-
-        execute()
-    }
-}
-
-
