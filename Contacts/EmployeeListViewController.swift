@@ -11,6 +11,7 @@ class EmployeeListViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.estimatedRowHeight = 150
         tableView.refreshControl = refreshControl
         tableView.register(EmployeeTableViewCell.self, forCellReuseIdentifier: "EmployeeTableViewCell")
@@ -100,6 +101,13 @@ extension EmployeeListViewController: UITableViewDataSource {
         cell.setupViews(employee: employeeViewModel.employees[indexPath.row])
 
         return cell
+    }
+}
+
+extension EmployeeListViewController: UITableViewDelegate {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController(employee: employeeViewModel.employees[indexPath.row])
+        navigationController?.pushViewController(detailViewController, animated: false)
     }
 }
 

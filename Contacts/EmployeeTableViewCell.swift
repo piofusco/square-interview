@@ -94,8 +94,8 @@ class EmployeeTableViewCell: UITableViewCell {
         employeeLabel.text = employee.team + " | " + employee.employeeType.description
         biographyLabel.text = employee.biography ?? ""
 
-        if let largeURLString = employee.photoUrlLarge,
-           let url = URL(string: largeURLString) {
+        if let urlString = employee.photoUrlSmall,
+           let url = URL(string: urlString) {
             iconImage.kf.setImage(with: url)
         }
     }
